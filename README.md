@@ -11,7 +11,11 @@ Incentive System: The company provides incentives to employees based on the numb
 Key Components:
 
 Product Class: Defines attributes and methods for managing electronic products.
+
 Inventory Class: Handles inventory-related operations such as adding, updating, and retrieving products.
+
 Employee Class: Manages employee details and tracks performance metrics including sales and incentives.
+
 User Interface: Provides a user-friendly interface for interacting with the system.
+
 File Handling: Implements file handling for data storage and retrieval.
