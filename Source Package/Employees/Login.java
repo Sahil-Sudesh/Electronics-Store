@@ -66,7 +66,6 @@ public class Login extends JFrame implements ActionListener {
             if (rs.next()) {
                 JOptionPane.showMessageDialog(null, "Login successful!");
                 loggedIn = true; // Update login status
-                System.out.println("nigga");
                 dispose(); // Close the login window
                 new Home(); // Open the home window
             } else {

@@ -52,6 +52,7 @@ public class Home extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == addEmployeeButton) {
             new AddEmployee();
+            
         } else if (ae.getSource() == viewEmployeeButton) {
             new ViewEmployee();
         } else if (ae.getSource() == updateEmployeeButton) {
