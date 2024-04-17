@@ -4,6 +4,10 @@ import java.awt.*;
 import java.awt.event.*;
 
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
 public class Splash extends JFrame {
     
     private JProgressBar progressBar;
@@ -11,24 +15,21 @@ public class Splash extends JFrame {
     private int progress;
 
     Splash() {
-        getContentPane().setBackground(Color.WHITE);
+        getContentPane().setBackground(Color.GRAY);
         setUndecorated(true); // Remove window decorations (title bar, borders)
         setLayout(new BorderLayout());
+        JLabel heading = new JLabel("    Employee Management System");
+        heading.setBounds(60, 30, 1000, 60);
+        heading.setFont(new Font("serif", Font.PLAIN, 50));
+        heading.setForeground(Color.black);
+        heading.setHorizontalAlignment(SwingConstants.LEFT);
+        add(heading);
         
-        // Logo panel with rotating icon
-        JPanel logoPanel = new JPanel() {
-            @Override
-            protected void paintComponent(Graphics g) {
-                super.paintComponent(g);
-                Graphics2D g2d = (Graphics2D) g.create();
-                // Rotate the logo
-                g2d.rotate(Math.toRadians(progress), getWidth() / 2, getHeight() / 2);
-                ImageIcon logoIcon = new ImageIcon(getClass().getResource("1280px-OOP.svg.png"));
-                g2d.drawImage(logoIcon.getImage(), getWidth() / 4, getHeight() / 4, getWidth() / 2, getHeight() / 2, this);
-                g2d.dispose();
-            }
-        };
-        add(logoPanel, BorderLayout.CENTER);
+        // Logo panel with centered icon
+        ImageIcon logoIcon = new ImageIcon(getClass().getResource("1280px-OOP.svg.png"));
+        JLabel logoLabel = new JLabel(logoIcon);
+        logoLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        add(logoLabel, BorderLayout.CENTER);
         
         // Progress bar at the bottom
         progressBar = new JProgressBar();
@@ -36,7 +37,7 @@ public class Splash extends JFrame {
         progressBar.setForeground(Color.BLUE);
         add(progressBar, BorderLayout.SOUTH);
         
-        // Set up timer for animation
+        // Set up timer for progress animation
         timer = new Timer(50, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -47,17 +48,13 @@ public class Splash extends JFrame {
                     dispose(); // Close splash screen when progress reaches 100%
                     new Login(); // Open login screen
                 }
-                repaint(); // Update the rotating logo
             }
         });
         timer.start();
         
-        setSize(400, 300);
+        setSize(800, 400);
         setLocationRelativeTo(null); // Center the frame on the screen
         setVisible(true);
     }
-
-    public static void main(String[] args) {
-        new Splash();
-    }
 }
+
