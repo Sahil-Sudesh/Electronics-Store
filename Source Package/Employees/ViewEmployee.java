@@ -25,10 +25,10 @@ public class ViewEmployee extends JFrame implements ActionListener {
         add(employeeIdChoice);
 
         try {
-            Connection connection = new Connection();
-            ResultSet resultSet = connection.s.executeQuery("SELECT * FROM employee");
+            Connec connection = new Connec();
+            ResultSet resultSet = connection.getStatement().executeQuery("SELECT * FROM employees");
             while (resultSet.next()) {
-                employeeIdChoice.add(resultSet.getString("empId"));
+                employeeIdChoice.add(resultSet.getString("employee_id"));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -36,8 +36,8 @@ public class ViewEmployee extends JFrame implements ActionListener {
 
         table = new JTable();
         try {
-            Conn connection = new Conn();
-            ResultSet resultSet = connection.s.executeQuery("SELECT * FROM employee");
+            Connec connection = new Connec();
+            ResultSet resultSet = connection.getStatement().executeQuery("SELECT * FROM employees");
             table.setModel(DbUtils.resultSetToTableModel(resultSet));
         } catch (Exception e) {
             e.printStackTrace();
@@ -57,13 +57,8 @@ public class ViewEmployee extends JFrame implements ActionListener {
         printButton.addActionListener(this);
         add(printButton);
 
-        updateButton = new JButton("Update");
-        updateButton.setBounds(220, 70, 80, 20);
-        updateButton.addActionListener(this);
-        add(updateButton);
-
         backButton = new JButton("Back");
-        backButton.setBounds(320, 70, 80, 20);
+        backButton.setBounds(220, 70, 80, 20);
         backButton.addActionListener(this);
         add(backButton);
 
@@ -74,10 +69,10 @@ public class ViewEmployee extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == searchButton) {
-            String query = "SELECT * FROM employee WHERE empId = '" + employeeIdChoice.getSelectedItem() + "'";
+            String query = "SELECT * FROM employees WHERE employee_id = '" + employeeIdChoice.getSelectedItem() + "'";
             try {
-                Conn connection = new Conn();
-                ResultSet resultSet = connection.s.executeQuery(query);
+                Connec connection = new Connec();
+                ResultSet resultSet = connection.getStatement().executeQuery(query);
                 table.setModel(DbUtils.resultSetToTableModel(resultSet));
             } catch (Exception e) {
                 e.printStackTrace();
@@ -88,17 +83,10 @@ public class ViewEmployee extends JFrame implements ActionListener {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        } else if (ae.getSource() == updateButton) {
-            setVisible(false);
-            new UpdateEmployee(employeeIdChoice.getSelectedItem());
         } else if (ae.getSource() == backButton) {
             setVisible(false);
             new Home();
-        }
+        } 
     }
 
-    public static void main(String[] args) {
-        new ViewEmployees();
-    }
 }
-

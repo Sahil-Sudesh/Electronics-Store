@@ -51,12 +51,16 @@ public class Home extends JFrame implements ActionListener {
     
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == addEmployeeButton) {
-            new AddEmployee();
-            
+            new AddEmployee();    
         } else if (ae.getSource() == viewEmployeeButton) {
             new ViewEmployee();
         } else if (ae.getSource() == updateEmployeeButton) {
-            new UpdateEmployee();
+        	String empId = JOptionPane.showInputDialog(null, "Enter Employee ID to Update:");
+            if (empId != null && !empId.isEmpty()) {
+                new UpdateEmployee(empId);
+            } else {
+                JOptionPane.showMessageDialog(null, "Please enter a valid Employee ID.");
+            }
         } else if (ae.getSource() == removeEmployeeButton) {
             new RemoveEmployee();
         }
