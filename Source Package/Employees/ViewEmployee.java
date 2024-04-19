@@ -13,7 +13,7 @@ public class ViewEmployee extends JFrame implements ActionListener {
     JButton searchButton, printButton, updateButton, backButton;
 
     public ViewEmployee() {
-        getContentPane().setBackground(Color.WHITE);
+        getContentPane().setBackground(Color.LIGHT_GRAY);
         setLayout(null);
 
         JLabel searchLabel = new JLabel("Search by Employee ID");

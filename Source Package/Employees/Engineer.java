@@ -12,8 +12,7 @@ public class Engineer extends Employee implements Payable {
 
  }
 
- // Implementing the calculateSalary method from the Payable interface
- @Override
+  @Override
  public double calculateSalary() {
 	 switch (getGrade()) {
 	 
@@ -38,7 +37,7 @@ public class Engineer extends Employee implements Payable {
     	 baseSalary=5000;
          bonus=2500;
          allowance=1250;
-     default: // Default salary if grade is not recognized
+     default:
     	 baseSalary=10000;
          bonus=0;
          allowance=0;
@@ -49,10 +48,8 @@ public class Engineer extends Employee implements Payable {
      
  }
 
- // Implementing the work method from the Employee class
  @Override
  public void work() {
-     // Add specific work behavior for engineers
      this.setPriority("Super High");
  }
 }

@@ -12,7 +12,7 @@ public class RemoveEmployee extends JFrame implements ActionListener {
     JLabel lblName, lblPhone, lblEmail;
 
     RemoveEmployee() {
-        getContentPane().setBackground(Color.WHITE);
+        getContentPane().setBackground(Color.LIGHT_GRAY);
         setLayout(null);
 
         JLabel lblEmpId = new JLabel("Employee ID");
@@ -65,15 +65,15 @@ public class RemoveEmployee extends JFrame implements ActionListener {
 
         delete = new JButton("Delete");
         delete.setBounds(80, 250, 100, 30);
-        delete.setBackground(Color.BLACK);
-        delete.setForeground(Color.WHITE);
+        delete.setBackground(Color.WHITE);
+        delete.setForeground(Color.BLACK);
         delete.addActionListener(this);
         add(delete);
 
         back = new JButton("Back");
         back.setBounds(220, 250, 100, 30);
-        back.setBackground(Color.BLACK);
-        back.setForeground(Color.WHITE);
+        back.setBackground(Color.WHITE);
+        back.setForeground(Color.BLACK);
         back.addActionListener(this);
         add(back);
 

@@ -2,21 +2,24 @@ package EMS;
 import java.io.*;
 import java.util.*;
 
-abstract class ElectronicProduct{
-	protected String productId;
-	protected String name;
-	protected double mrp_price;
-	protected double retail_price;
-	protected double discount;
-	protected int quantity=0;
-	protected String type;
+public abstract class ElectronicProduct{
+	public String productId;
+	public String name;
+	public double mrp_price;
+	public double costprice;
+	public double discount;
+	public int quantity=0;
+	public String type;
 	
 	
-	public ElectronicProduct(String productId,String name, double mrp_price,String type) {
+	public ElectronicProduct(String productId,String name, double mrp_price,double costprice,String type) {
 		this.productId = productId;
 		this.name = name;
 		this.mrp_price=mrp_price;
 		this.type=type;
+		this.quantity=0;
+		this.costprice=costprice;
+		
 	}
 	public ElectronicProduct(String productId,String name, double mrp_price, int quantity, String type) {
 		this.productId = productId;
@@ -25,8 +28,8 @@ abstract class ElectronicProduct{
 		this.quantity=quantity;
 		this.type=type;
 	}
-	public void updateQauntity(int quantity) {
-		this.quantity +=quantity;
+	public void updateQauntity(int quantitychange) {
+		this.quantity +=quantitychange;
 	}
 	public void displayDetails() {
 		System.out.println("Product ID: "+this.productId);
@@ -41,9 +44,10 @@ abstract class ElectronicProduct{
 		}
 		return true;
 	}
-	public double getMrpPrice() {
-		return this.mrp_price;
+	public double getCostPrice() {
+		return this.costprice;
 	}
+	pub
 	abstract boolean isDiscountAvailable();
 	abstract double getFinalPrice();
 	
@@ -53,6 +57,4 @@ abstract class ElectronicProduct{
 	
 }
 
-public class Product_Inventory {
-	
-}
+
