@@ -2,10 +2,11 @@ package Store;
 import EMS.ElectronicProduct;
 import EMS.AirConditioner;
 import EMS.TV;
-import EMS.DishWasher;
+import EMS.Dishwasher;
 import EMS.Refrigerator;
 import EMS.WashingMachine;
 import java.util.Scanner;
+import EMS.InventoryManagement;;
 public class boss extends log 
 {   public static String productId;
 	public static String name;
@@ -15,7 +16,9 @@ public class boss extends log
 	public static int quantity=0;
 	public static String type="";
     public static void main()
-    {   Scanner sc=new Scanner(System.in);
+    {   
+    	InventoryManagement lm=new InventoryManagement();
+    	Scanner sc=new Scanner(System.in);
         System.out.println("Enter Details Of The Product:");
         System.out.println("Enter Product Name:");
         name=sc.nextLine();
@@ -31,7 +34,7 @@ public class boss extends log
         discount=sc.nextDouble();
         System.out.println("Enter Quantity");
         quantity=sc.nextInt();
-        while(type!="AC"||type!="DW"||type!="RF"||type!="TV"||type!="WM")
+        //while(type!="AC"&& type!="DW"&&type!="RF"&&type!="TV"&&type!="WM")
         {
             System.out.println("Enter the Type");
             type=sc.nextLine();
@@ -42,26 +45,26 @@ public class boss extends log
            switch(type)
             {
                 case "AC":
-                AirConditioner a=new AirConditioner(productId,name,mrp_price,type); 
+                AirConditioner a=new AirConditioner(productId,name,mrp_price,costprice,type); 
                 InventoryManagement.addProduct(a);
                 break;
             
                 case "TV":
-                TV b=new TV(productId,name,mrp_price,type);
+                TV b=new TV(productId,name,mrp_price,costprice,type);
                 InventoryManagement.addProduct(b); 
                 break;
                 case "DW":
-                Dishwasher c=new Dishwasher(productId,name,mrp_price,type);
+                Dishwasher c=new Dishwasher(productId,name,mrp_price,costprice,type);
                 InventoryManagement.addProduct(c); 
 
                 break;
                 case "WM":
-                WashingMachine d=new WashingMachine(productId,name,mrp_price,type);
+                WashingMachine d=new WashingMachine(productId,name,mrp_price,costprice,type);
                 InventoryManagement.addProduct(d); 
 
                 break;
                 case "RF":
-                Refrigerator e=new Refrigerator(productId,name,mrp_price,type);
+                Refrigerator e=new Refrigerator(productId,name,mrp_price,costprice,type);
                 InventoryManagement.addProduct(e); 
 
                 break;
@@ -76,26 +79,26 @@ public class boss extends log
             switch(type)
             {
                 case "AC":
-                AirConditioner a=new AirConditioner(productId,name,mrp_price,quantity,type); 
+                AirConditioner a=new AirConditioner(productId,name,mrp_price,quantity,costprice,type); 
                 InventoryManagement.addProduct(a);
                 break;
             
                 case "TV":
-                TV b=new TV(productId,name,mrp_price,quantity,type);
+                TV b=new TV(productId,name,mrp_price,quantity,costprice,type);
                 InventoryManagement.addProduct(b); 
                 break;
                 case "DW":
-                Dishwasher c=new Dishwasher(productId,name,mrp_price,quantity,type);
+                Dishwasher c=new Dishwasher(productId,name,mrp_price,quantity,costprice,type);
                 InventoryManagement.addProduct(c); 
 
                 break;
                 case "WM":
-                WashingMachine d=new WashingMachine(productId,name,mrp_price,quantity,type);
+                WashingMachine d=new WashingMachine(productId,name,mrp_price,quantity,costprice,type);
                 InventoryManagement.addProduct(d); 
 
                 break;
                 case "RF":
-                Refrigerator e=new Refrigerator(productId,name,mrp_price,quantity,type);
+                Refrigerator e=new Refrigerator(productId,name,mrp_price,quantity,costprice,type);
                 InventoryManagement.addProduct(e); 
 
                 break;
@@ -104,6 +107,8 @@ public class boss extends log
                 default:
                 break;
             }
+            Customer cs = new Customer();
+            cs.buy();
         }
 
 

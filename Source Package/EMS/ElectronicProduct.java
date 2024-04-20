@@ -21,12 +21,13 @@ public abstract class ElectronicProduct{
 		this.costprice=costprice;
 		
 	}
-	public ElectronicProduct(String productId,String name, double mrp_price, int quantity, String type) {
+	public ElectronicProduct(String productId,String name, double mrp_price, int quantity,double costprice, String type) {
 		this.productId = productId;
 		this.name = name;
 		this.mrp_price=mrp_price;
 		this.quantity=quantity;
 		this.type=type;
+		this.costprice=costprice;
 	}
 	public void updateQauntity(int quantitychange) {
 		this.quantity +=quantitychange;
@@ -47,14 +48,12 @@ public abstract class ElectronicProduct{
 	public double getCostPrice() {
 		return this.costprice;
 	}
-	pub
-	abstract boolean isDiscountAvailable();
-	abstract double getFinalPrice();
+	
+	public abstract boolean isDiscountAvailable();
+	public abstract double getFinalPrice();
 	
 	
 	
 	
 	
 }
-
-

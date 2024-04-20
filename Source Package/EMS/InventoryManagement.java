@@ -2,22 +2,35 @@ package EMS;
 import java.util.*;
 
 public class InventoryManagement 
-{   Scanner sc=new Scanner(System.in);
+{   public static ArrayList<AirConditioner> acs=new ArrayList<AirConditioner>();
+public static ArrayList<TV> TVS=new ArrayList<TV>();
+public static ArrayList<Refrigerator> Refrigerators=new ArrayList<Refrigerator>();
+public static ArrayList<Dishwasher> Dishwashers=new ArrayList<Dishwasher>();
+public static ArrayList<WashingMachine> WashingMachines=new ArrayList<WashingMachine>();
+	//AirConditioner al=new AirConditioner("123","LG",3000,2000,"AC");
+	
+	Scanner sc=new Scanner(System.in);
     public InventoryManagement()
-    {
-        
+    {	acs=new ArrayList<AirConditioner>();
+    	TVS=new ArrayList<TV>();
+    	Refrigerators=new ArrayList<Refrigerator>();
+    	Dishwashers=new ArrayList<Dishwasher>();
+    	WashingMachines=new ArrayList<WashingMachine>();
+    	//AirConditioner al=new AirConditioner("123","LG",3000,2000,"AC");
+    	//acs.add(al);
     }
-    static ArrayList<AirConditioner> acs=new ArrayList<AirConditioner>();
-    static ArrayList<TV> TVS=new ArrayList<TV>();
-    static ArrayList<Refrigerator> Refrigerators=new ArrayList<Refrigerator>();
-    static ArrayList<Dishwasher> Dishwashers=new ArrayList<Dishwasher>();
-    static ArrayList<WashingMachine> WashingMachines=new ArrayList<WashingMachine>();
-    /*public boolean findProduct(String id)
+    public static void init()
+    {	AirConditioner al=new AirConditioner("123","LG",3000,10,2000,"AC");
+    	acs.add(al);
+    }
+    
+    
+    /*public boolean findProduct(String productId)
     {   
         
             for(int i=0;i<acs.size();i++)
             {
-                if(id.equals(acs.get(i).id))
+                if(productId.equals(acs.get(i).productId))
                 {
                     if(acs.get(i).quantity>0)
                     {
@@ -31,7 +44,7 @@ public class InventoryManagement
         
             for(int i=0;i<Refrigerators.size();i++)
             {
-                if(id.equals(Refrigerators.get(i).id))
+                if(productId.equals(Refrigerators.get(i).productId))
                 {
                     if(Refrigerators.get(i).quantity>0)
                     {
@@ -43,7 +56,7 @@ public class InventoryManagement
         
             for(int i=0;i<TVS.size();i++)
             {
-                if(id.equals(TVS.get(i).id))
+                if(productId.equals(TVS.get(i).productId))
                 {
                     if(TVS.get(i).quantity>0)
                     {
@@ -55,7 +68,7 @@ public class InventoryManagement
         
             for(int i=0;i<Dishwashers.size();i++)
             {
-                if(id.equals(Dishwashers.get(i).id))
+                if(productId.equals(Dishwashers.get(i).productId))
                 {
                     if(Dishwashers.get(i).quantity>0)
                     {
@@ -67,7 +80,7 @@ public class InventoryManagement
           
             for(int i=0;i<WashingMachines.size();i++)
             {
-                if(id.equals(WashingMachines.get(i).id))
+                if(productId.equals(WashingMachines.get(i).productId))
                 {
                     if(WashingMachines.get(i).quantity>0)
                     {
@@ -78,11 +91,11 @@ public class InventoryManagement
         
         return false;
     }*/
-    public static int findProduct(String s)
+    public static int findProduct(String productId)
     {
         for(int i=0;i<acs.size();i++)
             {
-                if(id.equals(acs.get(i).id))
+                if(productId.equals(acs.get(i).productId))
                 {
                     if(acs.get(i).quantity>0)
                     {
@@ -96,7 +109,7 @@ public class InventoryManagement
         
             for(int i=0;i<Refrigerators.size();i++)
             {
-                if(id.equals(Refrigerators.get(i).id))
+                if(productId.equals(Refrigerators.get(i).productId))
                 {
                     if(Refrigerators.get(i).quantity>0)
                     {
@@ -108,7 +121,7 @@ public class InventoryManagement
         
             for(int i=0;i<TVS.size();i++)
             {
-                if(id.equals(TVS.get(i).id))
+                if(productId.equals(TVS.get(i).productId))
                 {
                     if(TVS.get(i).quantity>0)
                     {
@@ -120,7 +133,7 @@ public class InventoryManagement
         
             for(int i=0;i<Dishwashers.size();i++)
             {
-                if(id.equals(Dishwashers.get(i).id))
+                if(productId.equals(Dishwashers.get(i).productId))
                 {
                     if(Dishwashers.get(i).quantity>0)
                     {
@@ -132,7 +145,7 @@ public class InventoryManagement
           
             for(int i=0;i<WashingMachines.size();i++)
             {
-                if(id.equals(WashingMachines.get(i).id))
+                if(productId.equals(WashingMachines.get(i).productId))
                 {
                     if(WashingMachines.get(i).quantity>0)
                     {
@@ -141,13 +154,13 @@ public class InventoryManagement
                 }
             }
         
-        return -1;
+        return 0;
     }
-    public static String types(String s)
+    public static String types(String productId)
     {
         for(int i=0;i<acs.size();i++)
             {
-                if(id.equals(acs.get(i).id))
+                if(productId.equals(acs.get(i).productId))
                 {
                     return acs.get(i).type;
                 }
@@ -158,7 +171,7 @@ public class InventoryManagement
         
             for(int i=0;i<Refrigerators.size();i++)
             {
-                if(id.equals(Refrigerators.get(i).id))
+                if(productId.equals(Refrigerators.get(i).productId))
                 {
                     return Refrigerators.get(i).type;
                 }
@@ -167,7 +180,7 @@ public class InventoryManagement
         
             for(int i=0;i<TVS.size();i++)
             {
-                if(id.equals(TVS.get(i).id))
+                if(productId.equals(TVS.get(i).productId))
                 {
                     return TVS.get(i).type;
                 }
@@ -176,7 +189,7 @@ public class InventoryManagement
         
             for(int i=0;i<Dishwashers.size();i++)
             {
-                if(id.equals(Dishwashers.get(i).id))
+                if(productId.equals(Dishwashers.get(i).productId))
                 {
                     return Dishwashers.get(i).type;
                 }
@@ -185,11 +198,13 @@ public class InventoryManagement
           
             for(int i=0;i<WashingMachines.size();i++)
             {
-                if(id.equals(WashingMachines.get(i).id))
+                if(productId.equals(WashingMachines.get(i).productId))
                 {
                     return WashingMachines.get(i).type;
                 }
             }
+            return "AC";
+            //return null;
     }
     
     

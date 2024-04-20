@@ -1,10 +1,22 @@
 package Store;
-import EMS.*;
+
 import java.io.FileWriter;
+import java.io.*;
+import java.util.Date;
+import java.util.Scanner;
+import java.util.Date;
+import EMS.InventoryManagement;
+import EMS.ElectronicProduct;
+import java.text.SimpleDateFormat;
+import EMS.TV;
+import EMS.AirConditioner;
+import EMS.Refrigerator;
+import EMS.Dishwasher;
+import EMS.WashingMachine;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+import EMS.ElectronicProduct;
 public class bill extends InventoryManagement {
     Customer customer;
     Double total;
@@ -17,18 +29,18 @@ public class bill extends InventoryManagement {
     public void generateBill() {
         Date date=new Date();
         SimpleDateFormat d=new SimpleDateFormat("yyyyMMdd_HHmmss");
-        String name="bill_"+dateFormat.format(date)+".txt";
+        String name="bill_"+d.format(date)+".txt";
         try (FileWriter writer = new FileWriter(name)) {
             writer.write("--------------------------------------------------------- Bill ---------------------------------------------------------\n");
             while (customer.items.size() > 0) {
-               // String s = customer.items.get(0).productId;
-                //int c = customer.count.get(0);
+                String s = customer.items.get(0).productId;
+                int c = customer.count.get(0);
             //    char category = s.charAt(0);
                 //String productType = types(s);
                 int n=InventoryManagement.findProduct(s);
-                    String type=InventoryManagement.types(s);
-                    ElectronicProduct ob;
-                    switch(type)
+                    String productType=InventoryManagement.types(s);
+                    ElectronicProduct ob=null;
+                    switch(productType)
                             {
                                 case "AC":
                                 ob=(ElectronicProduct)InventoryManagement.acs.get(n);
@@ -80,40 +92,40 @@ public class bill extends InventoryManagement {
 
 
 
-                switch (type) {
+                switch (productType) {
                     case "AC":
-                        writer.write("Air Conditioner " + productType + " x" + c + ": $" +((AirConditioner) (ob)).getFinalPrice(isDiscountAvailable) + " x" + c + " = $" + ((AirConditioner) (ob)).getFinalPrice(isDiscountAvailable) * c + "\n");
+                        writer.write("Air Conditioner " + productType + " x" + c + ": $" +((AirConditioner) (ob)).getFinalPrice(ob.isDiscountAvailable()) + " x" + c + " = $" + ((AirConditioner) (ob)).getFinalPrice(ob.isDiscountAvailable()) * c + "\n");
                         break;
                     case "RF":
-                        writer.write("Refrigerator " + productType + " x" + c + ": $" + ((Refrigerator) (ob)).getFinalPrice(isDiscountAvailable) + " x" + c + " = $" + ((Refrigerator) (ob)).getFinalPrice(isDiscountAvailable) * c + "\n");
+                        writer.write("Refrigerator " + productType + " x" + c + ": $" + ((Refrigerator) (ob)).getFinalPrice(ob.isDiscountAvailable()) + " x" + c + " = $" + ((Refrigerator) (ob)).getFinalPrice(ob.isDiscountAvailable()) * c + "\n");
                         break;
                     case "TV":
-                        writer.write("Television " + productType + " x" + c + ": $" + ((TV) (ob)).getFinalPrice(isDiscountAvailable) + " x" + c + " = $" + ((TV) (ob)).getFinalPrice(isDiscountAvailable) * c + "\n");
+                        writer.write("Television " + productType + " x" + c + ": $" + ((TV) (ob)).getFinalPrice(ob.isDiscountAvailable()) + " x" + c + " = $" + ((TV) (ob)).getFinalPrice(ob.isDiscountAvailable()) * c + "\n");
                         break;
                     case "WM":
-                        writer.write("Washing Machine " + productType + " x" + c + ": $" + ((WashingMachine) (ob)).getFinalPrice(isDiscountAvailable) + " x" + c + " = $" + ((WashingMachine) (ob)).getFinalPrice(isDiscountAvailable) * c + "\n");
+                        writer.write("Washing Machine " + productType + " x" + c + ": $" + ((WashingMachine) (ob)).getFinalPrice(ob.isDiscountAvailable()) + " x" + c + " = $" + ((WashingMachine) (ob)).getFinalPrice(ob.isDiscountAvailable()) * c + "\n");
                         break;
                     case "DW":
-                        writer.write("Dishwasher " + productType + " x" + c + ": $" + ((Dishwasher) (ob)).getFinalPrice(isDiscountAvailable) + " x" + c + " = $" + ((Dishwasher) (ob)).getFinalPrice(isDiscountAvailable) * c + "\n");
+                        writer.write("Dishwasher " + productType + " x" + c + ": $" + ((Dishwasher) (ob)).getFinalPrice(ob.isDiscountAvailable()) + " x" + c + " = $" + ((Dishwasher) (ob)).getFinalPrice(ob.isDiscountAvailable()) * c + "\n");
                         break;
                     default:
                     break;
                 }
-                switch (type) {
+                switch (productType) {
                     case "AC":
-                        total += ((AirConditioner) (ob)).getFinalPrice(isDiscountAvailable) * c;
+                        total += ((AirConditioner) (ob)).getFinalPrice(ob.isDiscountAvailable()) * c;
                         break;
                     case "RF":
-                        total += ((AirConditioner) (ob)).getFinalPrice(isDiscountAvailable) * c;
+                        total += ((AirConditioner) (ob)).getFinalPrice(ob.isDiscountAvailable()) * c;
                         break;
                     case "TV":
-                        total += ((TV) (ob)).getFinalPrice(isDiscountAvailable) * c;
+                        total += ((TV) (ob)).getFinalPrice(ob.isDiscountAvailable()) * c;
                         break;
                     case "WM":
-                        total += ((WashingMachine) (ob)).getFinalPrice(isDiscountAvailable) * c;
+                        total += ((WashingMachine) (ob)).getFinalPrice(ob.isDiscountAvailable()) * c;
                         break;
                     case "DW":
-                        total += ((DishWasher) (ob)).getFinalPrice(isDiscountAvailable) * c;
+                        total += ((Dishwasher) (ob)).getFinalPrice(ob.isDiscountAvailable()) * c;
                         break;
                     default:
                     break;

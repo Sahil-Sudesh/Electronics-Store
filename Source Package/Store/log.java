@@ -1,20 +1,28 @@
 package Store;
 
 import java.io.*;
+import java.util.Date;
 import java.util.Scanner;
 import java.util.Date;
-
+import EMS.InventoryManagement;
+import EMS.ElectronicProduct;
+import java.text.SimpleDateFormat;
+import EMS.TV;
+import EMS.AirConditioner;
+import EMS.Refrigerator;
+import EMS.Dishwasher;
+import EMS.WashingMachine;
 public class log extends InventoryManagement {
     Double pc;
 
-    public Log() {
+    public log() {
         this.pc = 0.0;
     }
 
     public void generateLog() {
         Date date=new Date();
         SimpleDateFormat d=new SimpleDateFormat("yyyyMMdd_HHmmss");
-        String name="bill_"+dateFormat.format(date)+".txt";
+        String name="bill_"+d.format(date)+".txt";
         try (FileWriter writer = new FileWriter(name)) {
             Scanner sc = new Scanner(System.in);
             System.out.println("Enter The Product Numbers Of All Products To Be Added To Inventory And Then Their Quantities");
@@ -53,14 +61,14 @@ public class log extends InventoryManagement {
 
 
         void processTransaction(String s, FileWriter writer, Scanner sc) throws IOException {
-            if (InventoryManagement.getCount(s) == null) {
-                System.out.println("Product Does Not Exist");
-            } else 
-            {
+           
+            
                     int n=InventoryManagement.findProduct(s);
-                    String type=InventoryManagement.types(s);
-                    ElectronicProduct ob;
-                    switch(type)
+                    String productType=InventoryManagement.types(s);
+                    ElectronicProduct ob=null;
+                    System.out.println("How Many " + productType + " are Being Added To Inventory");
+                    int c = sc.nextInt();
+                    switch(productType)
                             {
                                 case "AC":
                                 ob=(ElectronicProduct)InventoryManagement.acs.get(n);
@@ -89,24 +97,25 @@ public class log extends InventoryManagement {
                                 break;
                     
                             }
-                            switch (type) {
+                            switch (productType) {
                                 case "AC":
-                                    writer.write("Air Conditioner " + productType + " x" + c + ": $" +((AirConditioner) (ob)).getCostPrice + " x" + c + " = $" + ((AirConditioner) (ob)).getCostPrice * c + "\n");
+                                    writer.write("Air Conditioner " + productType + " x" + c + ": $" +ob.getCostPrice() + " x" + c + " = $" + ob.getCostPrice() * c + "\n");
                                     break;
                                 case "RF":
-                                    writer.write("Refrigerator " + productType + " x" + c + ": $" + ((Refrigerator) (ob)).getCostPrice + " x" + c + " = $" + ((Refrigerator) (ob)).getCostPrice * c + "\n");
+                                    writer.write("Refrigerator " + productType + " x" + c + ": $" + ob.getCostPrice() + " x" + c + " = $" + ob.getCostPrice() * c + "\n");
                                     break;
                                 case "TV":
-                                    writer.write("Television " + productType + " x" + c + ": $" + ((TV) (ob)).getCostPrice + " x" + c + " = $" + ((TV) (ob)).getCostPrice * c + "\n");
+                                    writer.write("Television " + productType + " x" + c + ": $" + ob.getCostPrice() + " x" + c + " = $" + ob.getCostPrice() * c + "\n");
                                     break;
                                 case "WM":
-                                    writer.write("Washing Machine " + productType + " x" + c + ": $" + ((WashingMachine) (ob)).getCostPrice + " x" + c + " = $" + ((WashingMachine) (ob)).getCostPrice * c + "\n");
+                                    writer.write("Washing Machine " + productType + " x" + c + ": $" + ob.getCostPrice() + " x" + c + " = $" + ob.getCostPrice() * c + "\n");
                                     break;
                                 case "DW":
-                                    writer.write("Dishwasher " + productType + " x" + c + ": $" + ((Dishwasher) (ob)).getCostPrice + " x" + c + " = $" + ((Dishwasher) (ob)).getCostPrice * c + "\n");
+                                    writer.write("Dishwasher " + productType + " x" + c + ": $" + ob.getCostPrice() + " x" + c + " = $" + ob.getCostPrice() * c + "\n");
                                     break;
                                 default:
                                 break;
+                                }
                 /*//char category = s.charAt(0);
                 String productType = getType(s);
                 System.out.println("How Many " + productType + " are Being Added To Inventory");
@@ -129,10 +138,8 @@ public class log extends InventoryManagement {
                         writer.write("Dishwasher " + productType + " x" + c + ": $" + InventoryManagement.getCost(s) + " x" + c + " = $" + InventoryManagement.getCost(s) * c + "\n");
                         break;
                 }*/
-                InventoryManagement.increaseQuantity(ob, c);
-                pc += InventoryManagement.getCostPrice(ob) * c;
+                InventoryManagement.incQuantity(ob, c);
+                pc += ob.getCostPrice() * c;
             }
         }
     }
-}
-}

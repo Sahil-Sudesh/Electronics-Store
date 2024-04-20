@@ -1,5 +1,6 @@
 package Employees;
 import EMS.*;
+import Store.*;
 import java.sql.*;
 
 public class OrderProcess {
@@ -23,12 +24,12 @@ public class OrderProcess {
             }
             
 
-            Thread[] threads = new Thread[numberOfEmployees];
-            for (int i = 0; i < numberOfEmployees; i++) {
+            Thread[] threads = new Thread[1];
+            for (int i = 0; i < 1; i++) {
                 final int index = i;
                 threads[i] = new Thread(() -> {
-                    Customer customer = new Customer();
-                    customer.buy();
+                    boss bo = new boss();
+                    bo.main();
                 });
                 threads[i].start();
             }
